@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Log into registry
-        run: echo "${{ secrets.SCALEWAY_TOKEN }}" | docker login rg.fr-par.scw.cloud/pixelfactory -u nologin --password-stdin
+        run: echo "${{ secrets.SCALEWAY_ACCESS_TOKEN }}" | docker login rg.fr-par.scw.cloud/pixelfactory -u nologin --password-stdin
 
       - name: Push image
         run: |
