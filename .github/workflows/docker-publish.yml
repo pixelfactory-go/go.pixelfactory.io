@@ -1,0 +1,36 @@
+name: Docker
+
+on:
+  push:
+    # Publish `master` as Docker `latest` image.
+    branches:
+      - master
+env:
+  IMAGE_NAME: rg.fr-par.scw.cloud/pixelfactory/sally
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest --tag $IMAGE_NAME:$GITHUB_SHA
+
+  push:
+    needs: build
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into registry
+        run: echo "${{ secrets.SCALEWAY_TOKEN }}" | docker login rg.fr-par.scw.cloud/pixelfactory -u nologin --password-stdin
+
+      - name: Push image
+        run: |
+          docker push $IMAGE_NAME:latest
+  
