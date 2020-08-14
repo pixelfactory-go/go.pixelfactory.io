@@ -9,8 +9,9 @@ env:
   IMAGE_NAME: rg.fr-par.scw.cloud/pixelfactory/sally
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
 
     steps:
       - uses: actions/checkout@v2
@@ -18,19 +19,9 @@ jobs:
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest --tag $IMAGE_NAME:$GITHUB_SHA
 
-  push:
-    needs: build
-
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
-    steps:
-      - uses: actions/checkout@v2
-
       - name: Log into registry
         run: echo "${{ secrets.SCALEWAY_ACCESS_TOKEN }}" | docker login rg.fr-par.scw.cloud/pixelfactory -u nologin --password-stdin
 
       - name: Push image
         run: |
           docker push $IMAGE_NAME:latest
-  
