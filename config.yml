@@ -1,0 +1,7 @@
+godoc:
+  host: pkg.go.dev
+
+url: go.pixelfactory.io
+packages:
+  pkg/server:
+    repo: github.com/pixelfactory-go/server

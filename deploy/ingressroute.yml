@@ -1,0 +1,43 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-http-https
+  namespace: sally
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sally-http
+  namespace: sally
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`go.pixelfactory.io`)
+      kind: Rule
+      services:
+        - name: sally-svc
+          port: 80
+      middlewares:
+        - name: redirect-http-https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: sally-https
+  namespace: sally
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`go.pixelfactory.io`)
+      kind: Rule
+      services:
+        - name: sally-svc
+          port: 80
+  tls:
+    secretName: sally-cert
