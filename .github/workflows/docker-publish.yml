@@ -24,4 +24,5 @@ jobs:
 
       - name: Push image
         run: |
+          docker push $IMAGE_NAME:$GITHUB_SHA
           docker push $IMAGE_NAME:latest
