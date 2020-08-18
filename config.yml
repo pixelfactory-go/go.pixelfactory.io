@@ -3,5 +3,7 @@ godoc:
 
 url: go.pixelfactory.io
 packages:
+  pkg/log:
+    repo: github.com/pixelfactory-go/observability-log
   pkg/server:
     repo: github.com/pixelfactory-go/server
