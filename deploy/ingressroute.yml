@@ -1,3 +1,4 @@
+---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
@@ -40,4 +41,4 @@ spec:
         - name: sally-svc
           port: 80
   tls:
-    secretName: sally-cert
+    secretName: go.pixelfactory.io

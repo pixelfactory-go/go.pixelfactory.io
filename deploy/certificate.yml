@@ -1,11 +1,11 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name: sally-cert
+  name: go.pixelfactory.io
   namespace: sally
 spec:
   commonName: go.pixelfactory.io
-  secretName: sally-cert
+  secretName: go.pixelfactory.io
   dnsNames:
     - go.pixelfactory.io
   issuerRef:
