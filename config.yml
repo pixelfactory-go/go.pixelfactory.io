@@ -7,3 +7,5 @@ packages:
     repo: github.com/pixelfactory-go/observability-log
   pkg/server:
     repo: github.com/pixelfactory-go/server
+  pkg/version:
+    repo: github.com/pixelfactory-go/version
