@@ -3,7 +3,7 @@ FROM golang:1.14-alpine as builder
 RUN apk add --update git
 RUN go get go.uber.org/sally
 
-FROM alpine:3.11
+FROM alpine:latest
 
 RUN mkdir -p /app
 COPY config.yml /app/config.yml
