@@ -1,6 +1,5 @@
-FROM golang:1.14-alpine as builder
+FROM golang:1.16 as builder
 
-RUN apk add --update git
 RUN go get go.uber.org/sally
 
 FROM alpine:latest
