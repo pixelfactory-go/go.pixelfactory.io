@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sally
-          image: rg.fr-par.scw.cloud/pixelfactory/sally:latest
+          image: rg.fr-par.scw.cloud/pixelfactory/sally:8740dceb9093b7836d10e0d27b0a64457b023e18
           ports:
             - containerPort: 8080
           resources:
