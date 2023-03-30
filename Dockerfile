@@ -2,7 +2,7 @@ FROM golang:1.16-alpine as builder
 
 RUN go get go.uber.org/sally
 
-FROM alpine:3.15
+FROM alpine:3.16
 
 RUN mkdir -p /app
 COPY config.yml /app/config.yml
